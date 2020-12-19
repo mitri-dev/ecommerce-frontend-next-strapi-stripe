@@ -1,0 +1,17 @@
+.title {
+  text-align: center;
+  line-height: 1.5rem;
+}
+.nav {
+  position: relative;
+}
+
+.back {
+  position: absolute;
+}
+
+.auth {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
