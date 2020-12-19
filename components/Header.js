@@ -3,14 +3,14 @@ import Link from 'next/Link'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 
-import GoogleAuthContext from '../context/GoogleAuthContext'
+import AuthContext from '../context/AuthContext'
 
 export default function Header() {
 
   const router = useRouter()
   const isHome = router.pathname === '/'
 
-  const {user} = useContext(GoogleAuthContext)
+  const {user} = useContext(AuthContext)
 
   const goBack = (e) => {
     e.preventDefault()

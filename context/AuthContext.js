@@ -16,7 +16,7 @@ export const AuthProvider = (props) => {
    */
   const login = async (email) => {
     setUser({email})
-    router.push('/')
+    router.back()
   }
 
   /**

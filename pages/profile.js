@@ -1,18 +1,18 @@
 import Head from 'next/head'
 import { useContext, useState } from 'react'
-import GoogleAuthContext from '../context/GoogleAuthContext'
+import AuthContext from '../context/AuthContext'
 
 import { GoogleLogout } from 'react-google-login'
 import { GOOGLE_CLIENT_ID } from '../utils/urls.js'
 
 export default function Profile() {
 
-  const { user, logout } = useContext(GoogleAuthContext)
+  const { user, logout } = useContext(AuthContext)
 
-  // function onSubmit(e) {
-  //   e.preventDefault()
-  //   logout()
-  // }
+  function onSubmit(e) {
+    e.preventDefault()
+    logout()
+  }
 
   if(!user) {
     return (

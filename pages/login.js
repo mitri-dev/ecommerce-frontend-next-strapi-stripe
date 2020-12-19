@@ -1,22 +1,32 @@
 import Head from 'next/head'
 import { useContext, useState } from 'react'
-import LoginButton from '../components/LoginButton'
+import AuthContext from '../context/AuthContext'
 
-import GoogleAuthContext from '../context/GoogleAuthContext'
+import { GoogleLogin } from 'react-google-login'
 import { GOOGLE_CLIENT_ID } from '../utils/urls.js'
 
 
 export default function Login() {
 
-  // const [email, setEmail] = useState(null)
-  //
-  // const { login } = useContext(GoogleAuthContext)
+  const [email, setEmail] = useState(null)
 
-  // function onSubmit(e) {
-  //   e.preventDefault()
-  //   login(email)
-  // }
+  const { login } = useContext(AuthContext)
 
+  function onSubmit(e) {
+    e.preventDefault()
+    login(email)
+  }
+
+  const responseGoogle = (res) => {
+    if(res.error) return
+    const profile = res.getBasicProfile();
+    login(profile.getEmail())
+
+    profile.getId()
+    profile.getName()
+    profile.getImageUrl()
+    profile.getEmail()
+  }
 
   return (
     <div>
@@ -41,7 +51,18 @@ export default function Login() {
       <button type="submit">Log in</button>
     </form> */}
 
-      <LoginButton/>
+      <GoogleLogin
+        clientId={GOOGLE_CLIENT_ID}
+        buttonText="Login"
+        // render={renderProps => (
+        //   <button onClick={renderProps.onClick} disabled={renderProps.disabled}>This is my custom Google button</button>
+        // )}
+        onSuccess={responseGoogle}
+        onFailure={responseGoogle}
+        isSignedIn={true}
+        cookiePolicy={'single_host_origin'}
+      />
+
 
   </div>
   )
